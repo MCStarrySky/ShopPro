@@ -221,7 +221,7 @@ class ShopImpl(private val configuration: Configuration) : Shop() {
             Bukkit.getPluginManager().callEvent(ShopProBuyEvent(item, amount, player))
             ShopPro.database.addAmount(item, player, LimitData(amount.toLong(), 0L))
             item.exeCommands(player, amount)
-            player.sendLang("buy-item", amount, item.name, item.price * amount)
+            player.sendLang("buy-item", amount, item.name, String.format("%.2f", item.price * amount))
             ShopPro.config.getString("the_voice_of_success")?.let {
                 player.playSound(player.location, it, 100f, 1f)
             }
@@ -272,7 +272,7 @@ class ShopImpl(private val configuration: Configuration) : Shop() {
             }
         }
         Bukkit.getPluginManager().callEvent(ShopProSellEvent(shopItem, amount, player))
-        player.sendLang("sell-item", amount, shopItem.name, shopItem.price * amount)
+        player.sendLang("sell-item", amount, shopItem.name, String.format("%.2f", shopItem.price * amount))
         ShopPro.config.getString("the_voice_of_success")?.let {
             player.playSound(player.location, it, 100f, 1f)
         }
@@ -317,7 +317,7 @@ class ShopImpl(private val configuration: Configuration) : Shop() {
             item.currency.giveMoney(player, item.price * amount)
             Bukkit.getPluginManager().callEvent(ShopProSellEvent(item, amount, player))
             ShopPro.database.addAmount(item, player, LimitData(0L, amount.toLong()))
-            player.sendLang("sell-item", amount, item.name, item.price * amount)
+            player.sendLang("sell-item", amount, item.name, String.format("%.2f", item.price * amount))
             ShopPro.config.getString("the_voice_of_success")?.let {
                 player.playSound(player.location, it, 100f, 1f)
             }

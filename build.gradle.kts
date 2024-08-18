@@ -20,7 +20,7 @@ taboolib {
             name("xbaimiao")
         }
         val bukkitNodes = bukkitNodes as MutableMap<Any, Any>
-        bukkitNodes["update-info"] = "限制商店购买点击频率为200ms一次(防止连点器)"
+        bukkitNodes["update-info"] = "修复提示信息错误"
     }
     env {
         install(NMS_UTIL, UI)
