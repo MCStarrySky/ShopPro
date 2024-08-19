@@ -1,5 +1,3 @@
-import io.izzel.taboolib.gradle.*
-
 plugins {
     `java-library`
     `maven-publish`
@@ -23,18 +21,41 @@ taboolib {
         bukkitNodes["update-info"] = "修复提示信息错误"
     }
     env {
-        install(NMS_UTIL, UI)
-        install(EXPANSION_COMMAND_HELPER, BUKKIT_ALL)
-        install(DATABASE, CHAT, CONFIGURATION, LANG, NMS, KETHER)
+//        install(NMS_UTIL, UI)
+//        install(EXPANSION_COMMAND_HELPER, BUKKIT_ALL)
+//        install(DATABASE, CHAT, CONFIGURATION, LANG, NMS, KETHER)
+        install(
+            "bukkit-ui",
+            "minecraft-command-helper",
+            "bukkit-hook",
+            "bukkit-util",
+            "bukkit-xseries",
+            "bukkit-xseries-item",
+            "bukkit-xseries-skull",
+            "platform-bukkit",
+            "platform-bukkit-impl",
+            "database-sql",
+            "minecraft-chat",
+            "basic-configuration",
+            "minecraft-i18n",
+            "minecraft-kether"
+        )
+
+
+        forceDownloadInDev = false
+        repoTabooLib = "http://mcstarrysky.com:8081/repository/releases/"
     }
     version {
-        taboolib = "6.1.1-beta17"
+        taboolib = "6.2.0-beta18-dev"
     }
 //    relocate("kotlin", "libs.kotlin171")
     relocate("com.xbaimiao.ktor", "com.github.xbaimiao.shoppro.stat")
 }
 
 repositories {
+    maven("http://mcstarrysky.com:8081/repository/releases/") {
+        isAllowInsecureProtocol = true
+    }
     mavenCentral()
     maven("https://maven.xbaimiao.com/repository/maven-public/")
     maven("https://r.irepo.space/maven/")
